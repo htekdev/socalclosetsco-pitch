@@ -27,41 +27,53 @@
 
     /* ── COVER ── */
     .cover {
-      background: radial-gradient(ellipse at 30% 50%, #1a1a35 0%, var(--dark) 65%);
+      background: #F7F4EF;
       position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
       height: 100%;
     }
+    /* left half: closet photo */
     .cover::before {
+      content: ''; position: absolute; inset: 0 0 0 48%;
+      background: url('images/b-home.png') center top/cover no-repeat;
+      opacity: 1;
+    }
+    /* subtle overlay gradient to blend photo edge */
+    .cover::after {
       content: ''; position: absolute; inset: 0;
-      background: url('images/a-home.png') center/cover no-repeat;
-      opacity: 0.07; filter: blur(6px);
+      background: linear-gradient(90deg, #F7F4EF 50%, rgba(247,244,239,0.1) 100%);
     }
     .cover-inner {
       position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: center;
-      gap: 16px; text-align: center; padding: 40px;
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 18px; text-align: left; padding: 60px 0 60px 80px; width: 100%;
     }
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35);
+      background: rgba(27,52,128,0.08); border: 1px solid rgba(27,52,128,0.2);
       border-radius: 100px; padding: 5px 18px;
-      font-size: 0.62em; color: var(--gold); font-weight: 500; letter-spacing: 0.1em;
+      font-size: 0.62em; color: var(--navy); font-weight: 500; letter-spacing: 0.1em;
     }
-    .cover h1 { font-size: 3em; margin: 0; line-height: 1.1; }
+    .cover h1 {
+      font-size: 3em; margin: 0; line-height: 1.1;
+      color: #1a1a1a; max-width: 480px;
+    }
     .divider-line {
-      width: 60px; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      width: 50px; height: 2px;
+      background: linear-gradient(90deg, #C9A84C, transparent);
     }
-    .cover .sub { font-size: 0.85em; color: var(--cream); opacity: 0.7; font-weight: 300; margin: 0; }
-    .cover .by  { font-size: 0.6em; color: var(--gray); letter-spacing: 0.05em; }
+    .cover .sub {
+      font-size: 0.82em; color: #444; font-weight: 400; margin: 0; max-width: 380px;
+      line-height: 1.5;
+    }
+    .cover .by  { font-size: 0.6em; color: #888; letter-spacing: 0.04em; margin-top: 4px; }
     .nav-hint {
       position: absolute; bottom: 22px; right: 36px; z-index: 3;
-      font-size: 0.55em; color: rgba(255,255,255,0.25);
+      font-size: 0.55em; color: rgba(0,0,0,0.3);
       display: flex; align-items: center; gap: 5px;
     }
     .nav-hint kbd {
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.15);
       border-radius: 4px; padding: 1px 6px; font-family: 'Inter', sans-serif;
     }
 
@@ -112,8 +124,8 @@
       <div class="badge">🔑 Website Redesign &nbsp;·&nbsp; SoCal Closets Co.</div>
       <h1>Two Design<br/>Proposals</h1>
       <div class="divider-line"></div>
-      <p class="sub">Concept A — Blue &amp; White &nbsp;|&nbsp; Concept B — Premium Dark</p>
-      <p class="by">Prepared by Sofia Flores · Web Development Services</p>
+      <p class="sub">Concept A — Blue &amp; White &nbsp;|&nbsp; Concept B — Warm &amp; Residential</p>
+      <p class="by">Prepared by Sofía Rocha · Web Development Services</p>
     </div>
     <div class="nav-hint">Navigate <kbd>→</kbd></div>
   </div>
@@ -203,7 +215,7 @@
 <section data-transition="fade">
   <div class="mockup-slide" style="background:#111115;">
     <div class="slide-header">
-      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="set-label gold">Concept B — Warm &amp; Residential</span>
       <span class="page-label">1 / 5</span>
     </div>
     <div class="slide-body">
@@ -219,7 +231,7 @@
 <section data-transition="slide">
   <div class="mockup-slide" style="background:#111115;">
     <div class="slide-header">
-      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="set-label gold">Concept B — Warm &amp; Residential</span>
       <span class="page-label">2 / 5</span>
     </div>
     <div class="slide-body">
@@ -235,7 +247,7 @@
 <section data-transition="slide">
   <div class="mockup-slide" style="background:#111115;">
     <div class="slide-header">
-      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="set-label gold">Concept B — Warm &amp; Residential</span>
       <span class="page-label">3 / 5</span>
     </div>
     <div class="slide-body">
@@ -251,7 +263,7 @@
 <section data-transition="slide">
   <div class="mockup-slide" style="background:#111115;">
     <div class="slide-header">
-      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="set-label gold">Concept B — Warm &amp; Residential</span>
       <span class="page-label">4 / 5</span>
     </div>
     <div class="slide-body">
@@ -267,7 +279,7 @@
 <section data-transition="slide">
   <div class="mockup-slide" style="background:#111115;">
     <div class="slide-header">
-      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="set-label gold">Concept B — Warm &amp; Residential</span>
       <span class="page-label">5 / 5</span>
     </div>
     <div class="slide-body">
