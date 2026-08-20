@@ -125,13 +125,21 @@
     .set-label.warm { color: var(--sand); }
     .page-num { font-size: 0.5em; color: #bbb; letter-spacing: 0.04em; }
 
-    /* The fill area — uses background-image to fill height, crop sides */
+    /* Fill area: img fills height, excess width is clipped */
     .img-fill {
       flex: 1; min-height: 0;
-      background-size: auto 100%;
-      background-position: center top;
-      background-repeat: no-repeat;
       overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .img-fill img {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: auto;
+      max-width: none;
+      max-height: none;
     }
 
     .slide-footer {
@@ -172,7 +180,7 @@
       <span class="set-label blue">Concept A — Blue &amp; White</span>
       <span class="page-num">1 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/a-home.png');"></div>
+    <div class="img-fill"><img src="images/a-home.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Home</p></div>
   </div>
 </section>
@@ -184,7 +192,7 @@
       <span class="set-label blue">Concept A — Blue &amp; White</span>
       <span class="page-num">2 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/a-gallery.png');"></div>
+    <div class="img-fill"><img src="images/a-gallery.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Gallery</p></div>
   </div>
 </section>
@@ -196,7 +204,7 @@
       <span class="set-label blue">Concept A — Blue &amp; White</span>
       <span class="page-num">3 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/a-services.png');"></div>
+    <div class="img-fill"><img src="images/a-services.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Services</p></div>
   </div>
 </section>
@@ -208,7 +216,7 @@
       <span class="set-label blue">Concept A — Blue &amp; White</span>
       <span class="page-num">4 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/a-process.png');"></div>
+    <div class="img-fill"><img src="images/a-process.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Our Process</p></div>
   </div>
 </section>
@@ -220,7 +228,7 @@
       <span class="set-label blue">Concept A — Blue &amp; White</span>
       <span class="page-num">5 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/a-contact.png');"></div>
+    <div class="img-fill"><img src="images/a-contact.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Contact</p></div>
   </div>
 </section>
@@ -232,7 +240,7 @@
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
       <span class="page-num">1 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/b-home.png');"></div>
+    <div class="img-fill"><img src="images/b-home.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Home</p></div>
   </div>
 </section>
@@ -244,7 +252,7 @@
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
       <span class="page-num">2 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/b-gallery.png');"></div>
+    <div class="img-fill"><img src="images/b-gallery.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Gallery</p></div>
   </div>
 </section>
@@ -256,7 +264,7 @@
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
       <span class="page-num">3 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/b-services.png');"></div>
+    <div class="img-fill"><img src="images/b-services.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Services</p></div>
   </div>
 </section>
@@ -268,7 +276,7 @@
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
       <span class="page-num">4 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/b-process.png');"></div>
+    <div class="img-fill"><img src="images/b-process.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Our Process</p></div>
   </div>
 </section>
@@ -280,7 +288,7 @@
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
       <span class="page-num">5 / 5</span>
     </div>
-    <div class="img-fill" style="background-image:url('images/b-contact.png');"></div>
+    <div class="img-fill"><img src="images/b-contact.png" alt="" /></div>
     <div class="slide-footer"><p class="pg-name">Contact</p></div>
   </div>
 </section>
