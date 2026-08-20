@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
   <style>
+        html, body {
+      margin: 0; padding: 0; overflow: hidden;
+      height: 100%; width: 100%;
+      background: #F8F5F0;
+    }
     :root {
       --sand:  #B8935A;
       --navy:  #1B3480;
@@ -300,7 +305,7 @@
   Reveal.initialize({
     hash: true, progress: true, slideNumber: 'c/t',
     transition: 'slide', transitionSpeed: 'default',
-    backgroundTransition: 'fade', center: false,
+    backgroundTransition: 'fade', center: true,
     width: 540, height: 960, margin: 0,
     minScale: 0.1, maxScale: 3.0,
     controls: true, controlsLayout: 'bottom-right',
