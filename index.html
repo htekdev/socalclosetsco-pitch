@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoCal Closets Co. — Website Redesign</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" />
@@ -14,16 +14,14 @@
       --gold: #C9A84C;
       --navy: #1B3480;
       --dark: #0A0A0F;
-      --dark2: #141420;
       --cream: #F5F0E8;
       --gray: #7A7A8A;
+      --blue-accent: #7b9fff;
     }
     .reveal { font-family: 'Inter', sans-serif; }
     .reveal .slides section { padding: 0; }
-    .reveal h1, .reveal h2 { text-transform: none; letter-spacing: -0.01em; }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.01em; }
     .reveal h1 { font-family: 'Playfair Display', serif; color: var(--gold); }
-    .reveal h3 { font-family: 'Inter', sans-serif; color: var(--gold); font-size: 0.75em;
-                 font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
     .reveal .progress { color: var(--gold); height: 3px; }
     .reveal .slide-number { color: var(--gray); font-size: 0.5em; }
 
@@ -37,425 +35,247 @@
     .cover::before {
       content: ''; position: absolute; inset: 0;
       background: url('images/a-home.png') center/cover no-repeat;
-      opacity: 0.08; filter: blur(4px);
+      opacity: 0.07; filter: blur(6px);
     }
     .cover-inner {
       position: relative; z-index: 2;
       display: flex; flex-direction: column; align-items: center;
-      gap: 14px; text-align: center; padding: 40px;
+      gap: 16px; text-align: center; padding: 40px;
     }
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35);
       border-radius: 100px; padding: 5px 18px;
-      font-size: 0.65em; color: var(--gold); font-weight: 500; letter-spacing: 0.08em;
+      font-size: 0.62em; color: var(--gold); font-weight: 500; letter-spacing: 0.1em;
     }
     .cover h1 { font-size: 3em; margin: 0; line-height: 1.1; }
     .divider-line {
       width: 60px; height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
-    .cover .sub { font-size: 0.9em; color: var(--cream); opacity: 0.75; font-weight: 300; margin: 0; }
-    .cover .by  { font-size: 0.62em; color: var(--gray); letter-spacing: 0.05em; }
+    .cover .sub { font-size: 0.85em; color: var(--cream); opacity: 0.7; font-weight: 300; margin: 0; }
+    .cover .by  { font-size: 0.6em; color: var(--gray); letter-spacing: 0.05em; }
     .nav-hint {
       position: absolute; bottom: 22px; right: 36px; z-index: 3;
-      font-size: 0.58em; color: rgba(255,255,255,0.28);
+      font-size: 0.55em; color: rgba(255,255,255,0.25);
       display: flex; align-items: center; gap: 5px;
     }
     .nav-hint kbd {
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 4px; padding: 1px 6px; font-family: 'Inter', sans-serif; font-size: 0.9em;
+      border-radius: 4px; padding: 1px 6px; font-family: 'Inter', sans-serif;
     }
 
-    /* ── SECTION DIVIDERS ── */
-    .div-a {
-      background: linear-gradient(135deg, #0e1e5a 0%, #1B3480 60%, #0a1240 100%);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 14px; text-align: center; height: 100%; padding: 40px;
-    }
-    .div-b {
-      background: linear-gradient(135deg, #111112 0%, #1e1e20 60%, #0a0a0c 100%);
-      border-top: 3px solid var(--gold);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 14px; text-align: center; height: 100%; padding: 40px;
-    }
-    .set-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      border-radius: 100px; padding: 5px 18px;
-      font-size: 0.65em; font-weight: 600; letter-spacing: 0.1em;
-    }
-    .set-badge.blue { background: rgba(123,159,255,0.12); border: 1px solid rgba(123,159,255,0.3); color: #7b9fff; }
-    .set-badge.gold { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.35); color: var(--gold); }
-    .pages-chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
-    .chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 100px; padding: 3px 12px; font-size: 0.6em; color: rgba(255,255,255,0.5); }
-    .chip.g { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.28); color: var(--gold); }
-
-    /* ── TWO-UP MOCKUP SLIDE ── */
-    .two-up-slide {
+    /* ── MOCKUP SLIDE ── */
+    .mockup-slide {
       background: #0D0D12;
       display: flex; flex-direction: column;
       width: 100%; height: 100%;
-      padding: 18px 36px 14px; box-sizing: border-box; gap: 10px;
+      padding: 16px 50px 14px; box-sizing: border-box;
     }
-    .two-up-header { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-    .two-up-header h3 { margin: 0; }
-    .two-up-header .slide-info { font-size: 0.6em; color: var(--gray); }
-    .two-up-body {
-      flex: 1; display: grid; grid-template-columns: 1fr 1fr;
-      gap: 28px; min-height: 0;
+    .slide-header {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0; margin-bottom: 10px;
     }
-    .mockup-card {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 10px; min-height: 0;
+    .slide-header .set-label {
+      font-size: 0.6em; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
     }
-    .mockup-card .img-wrap {
-      flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; width: 100%;
+    .slide-header .set-label.blue { color: var(--blue-accent); }
+    .slide-header .set-label.gold { color: var(--gold); }
+    .slide-header .page-label {
+      font-size: 0.6em; color: var(--gray); letter-spacing: 0.04em;
     }
-    .mockup-card img {
-      max-height: 100%; max-width: 100%;
-      object-fit: contain;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.4);
-    }
-    .mockup-card .lbl {
-      font-size: 0.65em; font-weight: 600; letter-spacing: 0.06em;
-      color: var(--cream); text-align: center;
-    }
-    .mockup-card .lbl span {
-      font-weight: 300; color: var(--gray); font-size: 0.9em;
-    }
-
-    /* ── SINGLE MOCKUP SLIDE (hero pages) ── */
-    .one-up-slide {
-      background: #0D0D12;
-      display: flex; flex-direction: column;
-      width: 100%; height: 100%;
-      padding: 18px 60px 16px; box-sizing: border-box; gap: 14px;
-    }
-    .one-up-header { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-    .one-up-header h3 { margin: 0; }
-    .one-up-body {
+    .slide-body {
       flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;
     }
-    .one-up-body img {
-      max-height: 100%; max-width: 90%;
+    .slide-body img {
+      max-height: 100%; max-width: 55%;
       object-fit: contain;
-      border-radius: 24px;
-      box-shadow: 0 28px 80px rgba(0,0,0,0.6), 0 6px 20px rgba(0,0,0,0.4);
+      border-radius: 22px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.65), 0 8px 24px rgba(0,0,0,0.4);
     }
-    .one-up-footer {
-      text-align: center; flex-shrink: 0;
+    .slide-footer {
+      text-align: center; flex-shrink: 0; margin-top: 10px;
     }
-    .one-up-footer .pg-name { font-size: 1em; font-weight: 600; color: var(--cream); margin: 0 0 4px; }
-    .one-up-footer .pg-desc { font-size: 0.68em; color: var(--gray); font-weight: 300; }
-
-    /* ── IMPROVEMENTS ── */
-    .imp-slide {
-      background: #0D0D12;
-      display: grid; grid-template-columns: 1fr 1fr;
-      width: 100%; height: 100%;
+    .slide-footer .pg-name {
+      font-size: 0.95em; font-weight: 600; color: var(--cream); margin: 0 0 2px;
     }
-    .imp-col {
-      padding: 50px 44px; display: flex; flex-direction: column;
-      justify-content: center; gap: 18px;
-    }
-    .imp-col:first-child { background: #0a0a0f; border-right: 1px solid rgba(255,255,255,0.05); }
-    .imp-item { display: flex; gap: 12px; align-items: flex-start; }
-    .imp-dot {
-      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
-      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
-      display: flex; align-items: center; justify-content: center; font-size: 0.7em;
-    }
-    .imp-txt strong { display: block; font-size: 0.78em; font-weight: 600; color: var(--cream); margin-bottom: 2px; }
-    .imp-txt span   { font-size: 0.68em; color: var(--gray); line-height: 1.45; }
-    .tag { display: inline-block; border-radius: 100px; padding: 1px 9px; margin-top: 4px;
-           font-size: 0.62em; font-weight: 600; }
-    .tag.hi { background: rgba(220,60,60,0.14); color: #e57373; border: 1px solid rgba(220,60,60,0.3); }
-    .tag.md { background: rgba(255,160,0,0.13); color: #ffb74d; border: 1px solid rgba(255,160,0,0.3); }
-
-    /* ── CTA ── */
-    .cta-slide {
-      background: radial-gradient(ellipse at center, #18243c 0%, var(--dark) 65%);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 18px; text-align: center; height: 100%; padding: 60px;
-    }
-    .cta-slide h1 { font-size: 2.6em; margin: 0; line-height: 1.1; }
-    .cta-card {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px; padding: 28px 44px;
-      display: flex; flex-direction: column; gap: 18px; align-items: center; max-width: 680px;
-    }
-    .cta-card p { font-size: 0.82em; color: var(--cream); opacity: 0.8; margin: 0;
-                  font-weight: 300; line-height: 1.6; max-width: 480px; }
-    .cta-btn {
-      background: var(--gold); color: #0a0a0f; font-weight: 700;
-      font-size: 0.82em; padding: 13px 34px; border-radius: 100px;
-      letter-spacing: 0.05em; text-transform: uppercase;
-    }
-    .contacts { display: flex; gap: 28px; }
-    .c-item { font-size: 0.68em; color: var(--gray); display: flex; flex-direction: column; gap: 3px; }
-    .c-item strong { color: var(--cream); font-weight: 500; }
-    .cta-note { font-size: 0.58em; color: var(--gray); margin: 0; }
   </style>
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
 
-<!-- 1 ── COVER ────────────────────────────── -->
+<!-- COVER -->
 <section data-transition="fade">
   <div class="cover">
     <div class="cover-inner">
-      <div class="badge">🔑 Website Redesign · SoCal Closets Co.</div>
-      <h1>A Better Website for<br/>a Great Business</h1>
+      <div class="badge">🔑 Website Redesign &nbsp;·&nbsp; SoCal Closets Co.</div>
+      <h1>Two Design<br/>Proposals</h1>
       <div class="divider-line"></div>
-      <p class="sub">Two design concepts — Blue/White &amp; Premium Dark</p>
+      <p class="sub">Concept A — Blue &amp; White &nbsp;|&nbsp; Concept B — Premium Dark</p>
       <p class="by">Prepared by Sofia Flores · Web Development Services</p>
     </div>
-    <div class="nav-hint">Navigate <kbd>→</kbd> or swipe</div>
+    <div class="nav-hint">Navigate <kbd>→</kbd></div>
   </div>
 </section>
 
-<!-- 2 ── SET A DIVIDER ─────────────────────── -->
+<!-- SET A: HOME -->
 <section data-transition="slide">
-  <div class="div-a">
-    <div class="set-badge blue">CONCEPT A</div>
-    <h1 style="color:#7b9fff; margin:0; font-size:2.8em;">Blue &amp; White</h1>
-    <p style="color:var(--cream); opacity:0.8; font-size:0.85em; max-width:500px; margin:0; font-weight:300;">
-      Same brand colors they already use — better organized, mobile-first,<br/>
-      with all content preserved and every issue resolved.
-    </p>
-    <div class="pages-chips">
-      <div class="chip">Home</div>
-      <div class="chip">Gallery</div>
-      <div class="chip">Services</div>
-      <div class="chip">Our Process</div>
-      <div class="chip">Contact</div>
+  <div class="mockup-slide">
+    <div class="slide-header">
+      <span class="set-label blue">Concept A — Blue &amp; White</span>
+      <span class="page-label">1 / 5</span>
     </div>
-  </div>
-</section>
-
-<!-- 3 ── SET A: HOME ──────────────────────── -->
-<section data-transition="slide">
-  <div class="one-up-slide">
-    <div class="one-up-header">
-      <h3 style="color:#7b9fff;">Option A — Blue &amp; White</h3>
-      <span class="slide-info">Home Page</span>
+    <div class="slide-body">
+      <img src="images/a-home.png" alt="Home – Blue" />
     </div>
-    <div class="one-up-body">
-      <img src="images/a-home.png" alt="Home Blue" />
-    </div>
-    <div class="one-up-footer">
+    <div class="slide-footer">
       <p class="pg-name">Home</p>
-      <p class="pg-desc">Hero · Trust bar · Services overview · "Book My Free Consultation" CTA</p>
     </div>
   </div>
 </section>
 
-<!-- 4 ── SET A: GALLERY + SERVICES ─────────── -->
+<!-- SET A: GALLERY -->
 <section data-transition="slide">
-  <div class="two-up-slide">
-    <div class="two-up-header">
-      <h3 style="color:#7b9fff;">Option A — Blue &amp; White</h3>
-      <span class="slide-info">Gallery · Services</span>
+  <div class="mockup-slide">
+    <div class="slide-header">
+      <span class="set-label blue">Concept A — Blue &amp; White</span>
+      <span class="page-label">2 / 5</span>
     </div>
-    <div class="two-up-body">
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/a-gallery.png" alt="Gallery Blue" /></div>
-        <div class="lbl">Gallery <span>· Walk-In(38) · Wardrobe(17) · Reach-In(18) · Garage(10) · Laundry(9) · Entertainment(3)</span></div>
-      </div>
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/a-services.png" alt="Services Blue" /></div>
-        <div class="lbl">Services <span>· All 6 service types with photos &amp; descriptions</span></div>
-      </div>
+    <div class="slide-body">
+      <img src="images/a-gallery.png" alt="Gallery – Blue" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Gallery</p>
     </div>
   </div>
 </section>
 
-<!-- 5 ── SET A: PROCESS + CONTACT ──────────── -->
+<!-- SET A: SERVICES -->
 <section data-transition="slide">
-  <div class="two-up-slide">
-    <div class="two-up-header">
-      <h3 style="color:#7b9fff;">Option A — Blue &amp; White</h3>
-      <span class="slide-info">Our Process · Contact</span>
+  <div class="mockup-slide">
+    <div class="slide-header">
+      <span class="set-label blue">Concept A — Blue &amp; White</span>
+      <span class="page-label">3 / 5</span>
     </div>
-    <div class="two-up-body">
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/a-process.png" alt="Process Blue" /></div>
-        <div class="lbl">Our Process <span>· 5 steps · 2 videos · Fixed quote · 24hr response</span></div>
-      </div>
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/a-contact.png" alt="Contact Blue" /></div>
-        <div class="lbl">Contact <span>· 9 service checkboxes · Virtual &amp; In-Home estimate options</span></div>
-      </div>
+    <div class="slide-body">
+      <img src="images/a-services.png" alt="Services – Blue" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Services</p>
     </div>
   </div>
 </section>
 
-<!-- 6 ── SET B DIVIDER ─────────────────────── -->
+<!-- SET A: PROCESS -->
 <section data-transition="slide">
-  <div class="div-b">
-    <div class="set-badge gold">CONCEPT B</div>
-    <h1 style="color:var(--gold); margin:0; font-size:2.8em;">Premium &amp; Elegant</h1>
-    <p style="color:var(--cream); opacity:0.8; font-size:0.85em; max-width:500px; margin:0; font-weight:300;">
-      Dark charcoal with gold accents — positions SoCal Closets Co.<br/>
-      at the level of premium brands like California Closets.
-    </p>
-    <div class="pages-chips">
-      <div class="chip g">Home</div>
-      <div class="chip g">Gallery</div>
-      <div class="chip g">Services</div>
-      <div class="chip g">Our Process</div>
-      <div class="chip g">Contact</div>
+  <div class="mockup-slide">
+    <div class="slide-header">
+      <span class="set-label blue">Concept A — Blue &amp; White</span>
+      <span class="page-label">4 / 5</span>
+    </div>
+    <div class="slide-body">
+      <img src="images/a-process.png" alt="Our Process – Blue" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Our Process</p>
     </div>
   </div>
 </section>
 
-<!-- 7 ── SET B: HOME ──────────────────────── -->
+<!-- SET A: CONTACT -->
 <section data-transition="slide">
-  <div class="one-up-slide">
-    <div class="one-up-header">
-      <h3>Option B — Premium &amp; Elegant</h3>
-      <span class="slide-info">Home Page</span>
+  <div class="mockup-slide">
+    <div class="slide-header">
+      <span class="set-label blue">Concept A — Blue &amp; White</span>
+      <span class="page-label">5 / 5</span>
     </div>
-    <div class="one-up-body">
-      <img src="images/b-home.png" alt="Home Premium" />
+    <div class="slide-body">
+      <img src="images/a-contact.png" alt="Contact – Blue" />
     </div>
-    <div class="one-up-footer">
-      <p class="pg-name">Home</p>
-      <p class="pg-desc">Dramatic hero · Gold trust bar · Services in dark cards · Premium positioning</p>
-    </div>
-  </div>
-</section>
-
-<!-- 8 ── SET B: GALLERY + SERVICES ─────────── -->
-<section data-transition="slide">
-  <div class="two-up-slide">
-    <div class="two-up-header">
-      <h3>Option B — Premium &amp; Elegant</h3>
-      <span class="slide-info">Gallery · Services</span>
-    </div>
-    <div class="two-up-body">
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/b-gallery.png" alt="Gallery Premium" /></div>
-        <div class="lbl">Gallery <span>· Gold filter tabs · Dark editorial portfolio · All 6 categories</span></div>
-      </div>
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/b-services.png" alt="Services Premium" /></div>
-        <div class="lbl">Services <span>· Luxury dark cards · Cinematic overlays · Gold trust icons</span></div>
-      </div>
+    <div class="slide-footer">
+      <p class="pg-name">Contact</p>
     </div>
   </div>
 </section>
 
-<!-- 9 ── SET B: PROCESS + CONTACT ──────────── -->
-<section data-transition="slide">
-  <div class="two-up-slide">
-    <div class="two-up-header">
-      <h3>Option B — Premium &amp; Elegant</h3>
-      <span class="slide-info">Our Process · Contact</span>
-    </div>
-    <div class="two-up-body">
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/b-process.png" alt="Process Premium" /></div>
-        <div class="lbl">Our Process <span>· 5 numbered steps · Gold accents · Video thumbnails</span></div>
-      </div>
-      <div class="mockup-card">
-        <div class="img-wrap"><img src="images/b-contact.png" alt="Contact Premium" /></div>
-        <div class="lbl">Contact <span>· Underline-style form · Gold concierge feel · All 9 checkboxes</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10 ── IMPROVEMENTS ─────────────────────── -->
-<section data-transition="slide">
-  <div class="imp-slide">
-    <div class="imp-col">
-      <h3 style="margin:0 0 4px;">What Gets Fixed</h3>
-      <h2 style="font-size:1.2em; margin:0 0 16px; color:var(--cream);">Every Change Has a<br/>Business Reason</h2>
-
-      <div class="imp-item">
-        <div class="imp-dot">✅</div>
-        <div class="imp-txt">
-          <strong>"Book Consultation" Button — Fixed</strong>
-          <span>Currently loops back to the homepage. Every visitor who tries to book is lost. This is the #1 revenue fix.</span>
-          <div><span class="tag hi">HIGH IMPACT</span></div>
-        </div>
-      </div>
-      <div class="imp-item">
-        <div class="imp-dot">✅</div>
-        <div class="imp-txt">
-          <strong>Professional Email Address</strong>
-          <span>hello@socalclosetsco.com instead of Gmail — signals established business to premium buyers.</span>
-          <div><span class="tag hi">HIGH — credibility</span></div>
-        </div>
-      </div>
-      <div class="imp-item">
-        <div class="imp-dot">✅</div>
-        <div class="imp-txt">
-          <strong>Mobile Navigation Visible</strong>
-          <span>Full menu on phones — currently just a hamburger icon with no menu items behind it.</span>
-          <div><span class="tag hi">HIGH — mobile UX</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="imp-col">
-      <div class="imp-item" style="margin-top:20px;">
-        <div class="imp-dot">✅</div>
-        <div class="imp-txt">
-          <strong>All 6 Services Clearly Showcased</strong>
-          <span>Walk-In · Wardrobe · Reach-In · Garage · Laundry · Entertainment Centers — each with photos &amp; descriptions.</span>
-          <div><span class="tag hi">HIGH — discovery</span></div>
-        </div>
-      </div>
-      <div class="imp-item">
-        <div class="imp-dot">✅</div>
-        <div class="imp-txt">
-          <strong>Consistent Location Throughout</strong>
-          <span>"Pomona Ca. 91766 · Southern California" — no more conflict between "Los Angeles" and "Pomona".</span>
-          <div><span class="tag md">MED — local SEO</span></div>
-        </div>
-      </div>
-      <div class="imp-item">
-        <div class="imp-dot">✅</div>
-        <div class="imp-txt">
-          <strong>Virtual &amp; In-Home Estimate in Form</strong>
-          <span>The contact form now shows both estimate types, exactly as the client offers them today.</span>
-          <div><span class="tag md">MED — conversions</span></div>
-        </div>
-      </div>
-      <div class="imp-item">
-        <div class="imp-dot">✅</div>
-        <div class="imp-txt">
-          <strong>Zero Content Lost</strong>
-          <span>Every service, trust point, process step, and contact detail is preserved — only the visual presentation improves.</span>
-          <div><span class="tag md">ZERO RISK</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 11 ── CTA ──────────────────────────────── -->
+<!-- SET B: HOME -->
 <section data-transition="fade">
-  <div class="cta-slide">
-    <h3 style="margin:0;">READY TO TRANSFORM YOUR WEBSITE?</h3>
-    <h1>Let's Build It Together</h1>
-    <div class="divider-line"></div>
-    <div class="cta-card">
-      <p>Your content is great. Your photos are beautiful. Your process is solid.<br/>
-         Your website just needs to show all of that in a way that turns visitors into clients.</p>
-      <div class="cta-btn">📅 Book a Call to Get Started</div>
-      <div class="contacts">
-        <div class="c-item"><span>Phone / WhatsApp</span><strong>(949) 307-1141</strong></div>
-        <div class="c-item"><span>Email</span><strong>socalclosetsco@gmail.com</strong></div>
-        <div class="c-item"><span>Location</span><strong>Pomona Ca. · Southern California</strong></div>
-      </div>
+  <div class="mockup-slide" style="background:#111115;">
+    <div class="slide-header">
+      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="page-label">1 / 5</span>
     </div>
-    <p class="cta-note">Choose Option A (Blue/White) or Option B (Premium Dark) · All fixes included · Delivery 2–3 weeks</p>
+    <div class="slide-body">
+      <img src="images/b-home.png" alt="Home – Premium" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Home</p>
+    </div>
+  </div>
+</section>
+
+<!-- SET B: GALLERY -->
+<section data-transition="slide">
+  <div class="mockup-slide" style="background:#111115;">
+    <div class="slide-header">
+      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="page-label">2 / 5</span>
+    </div>
+    <div class="slide-body">
+      <img src="images/b-gallery.png" alt="Gallery – Premium" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Gallery</p>
+    </div>
+  </div>
+</section>
+
+<!-- SET B: SERVICES -->
+<section data-transition="slide">
+  <div class="mockup-slide" style="background:#111115;">
+    <div class="slide-header">
+      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="page-label">3 / 5</span>
+    </div>
+    <div class="slide-body">
+      <img src="images/b-services.png" alt="Services – Premium" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Services</p>
+    </div>
+  </div>
+</section>
+
+<!-- SET B: PROCESS -->
+<section data-transition="slide">
+  <div class="mockup-slide" style="background:#111115;">
+    <div class="slide-header">
+      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="page-label">4 / 5</span>
+    </div>
+    <div class="slide-body">
+      <img src="images/b-process.png" alt="Our Process – Premium" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Our Process</p>
+    </div>
+  </div>
+</section>
+
+<!-- SET B: CONTACT -->
+<section data-transition="slide">
+  <div class="mockup-slide" style="background:#111115;">
+    <div class="slide-header">
+      <span class="set-label gold">Concept B — Premium Dark</span>
+      <span class="page-label">5 / 5</span>
+    </div>
+    <div class="slide-body">
+      <img src="images/b-contact.png" alt="Contact – Premium" />
+    </div>
+    <div class="slide-footer">
+      <p class="pg-name">Contact</p>
+    </div>
   </div>
 </section>
 
