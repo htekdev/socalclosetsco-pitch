@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoCal Closets Co. — Website Redesign</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --navy: #1B3480;
+      --navy-light: #2244A8;
+      --dark: #0A0A0F;
+      --dark2: #141420;
+      --cream: #F5F0E8;
+      --gray: #8A8A9A;
+    }
+
+    .reveal { font-family: 'Inter', sans-serif; }
+
+    /* ── Global overrides ── */
+    .reveal .slides section { padding: 0; }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.01em; }
+    .reveal h1 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 2.4em; line-height: 1.15; }
+    .reveal h2 { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1.6em; }
+    .reveal h3 { font-family: 'Inter', sans-serif; color: var(--gold); font-size: 1em; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .reveal p { color: var(--cream); font-weight: 300; line-height: 1.6; }
+
+    /* ── Slide base ── */
+    .slide-inner {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 40px 60px; box-sizing: border-box;
+    }
+
+    /* ══ COVER ══ */
+    .cover {
+      background: radial-gradient(ellipse at 30% 50%, #1a1a35 0%, var(--dark) 60%);
+      position: relative; overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('images/a-home.png') center/cover no-repeat;
+      opacity: 0.07; filter: blur(3px);
+    }
+    .cover .inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 16px;
+      text-align: center;
+    }
+    .cover .badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 100px; padding: 6px 18px;
+      font-size: 0.75em; color: var(--gold); font-weight: 500; letter-spacing: 0.08em;
+    }
+    .cover h1 { font-size: 3.2em; margin: 0; }
+    .cover .subtitle {
+      font-size: 1.1em; color: var(--cream); opacity: 0.8; font-weight: 300; margin: 0;
+    }
+    .cover .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 8px 0;
+    }
+    .cover .by-line {
+      font-size: 0.72em; color: var(--gray); letter-spacing: 0.06em;
+    }
+    .cover .nav-hint {
+      position: absolute; bottom: 24px; right: 40px; z-index: 3;
+      font-size: 0.65em; color: rgba(255,255,255,0.3); display: flex; align-items: center; gap: 6px;
+    }
+    .cover .nav-hint kbd {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px; padding: 2px 6px; font-size: 0.9em; font-family: 'Inter', sans-serif;
+    }
+
+    /* ══ ISSUE SLIDE ══ */
+    .issues-slide {
+      background: var(--dark2);
+      display: grid; grid-template-columns: 1fr 1fr;
+      width: 100%; height: 100%;
+    }
+    .issues-left {
+      background: var(--dark); display: flex; flex-direction: column;
+      justify-content: center; padding: 50px 40px; gap: 18px;
+    }
+    .issues-right {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      padding: 30px; background: #0a0a10;
+    }
+    .issues-right img {
+      height: 100%; max-height: 500px; object-fit: contain;
+      border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .issue-item {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .issue-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(220,50,50,0.2); border: 1px solid rgba(220,50,50,0.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75em; flex-shrink: 0; margin-top: 2px;
+    }
+    .issue-text strong {
+      display: block; color: var(--cream); font-size: 0.82em; font-weight: 600; margin-bottom: 2px;
+    }
+    .issue-text span {
+      color: var(--gray); font-size: 0.72em; line-height: 1.4;
+    }
+
+    /* ══ SECTION DIVIDER ══ */
+    .section-a-divider {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d1f55 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; text-align: center; height: 100%;
+    }
+    .section-b-divider {
+      background: linear-gradient(135deg, #1C1C1E 0%, #2a2a2a 100%);
+      border-top: 3px solid var(--gold);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; text-align: center; height: 100%;
+    }
+    .set-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px; padding: 5px 16px;
+      font-size: 0.7em; color: rgba(255,255,255,0.6); font-weight: 500; letter-spacing: 0.1em;
+    }
+    .set-label.gold-label {
+      background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.4); color: var(--gold);
+    }
+    .pages-row {
+      display: flex; gap: 10px; margin-top: 10px;
+    }
+    .page-chip {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px; padding: 4px 14px;
+      font-size: 0.65em; color: rgba(255,255,255,0.55);
+    }
+    .page-chip.gold { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold); }
+
+    /* ══ BEFORE / AFTER ══ */
+    .ba-slide {
+      width: 100%; height: 100%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: #0D0D0F;
+    }
+    .ba-panel {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 24px 20px; gap: 12px; position: relative;
+    }
+    .ba-panel.before { background: #111114; border-right: 1px solid rgba(255,255,255,0.06); }
+    .ba-panel.after-blue { background: #0d1228; }
+    .ba-panel.after-gold { background: #141208; }
+    .ba-label {
+      font-size: 0.62em; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 100px;
+    }
+    .ba-label.before-label { background: rgba(180,50,50,0.2); color: #e57373; border: 1px solid rgba(180,50,50,0.35); }
+    .ba-label.after-label-blue { background: rgba(27,52,128,0.4); color: #7b9fff; border: 1px solid rgba(27,52,128,0.6); }
+    .ba-label.after-label-gold { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.35); }
+    .ba-page-name { font-size: 0.75em; color: var(--cream); font-weight: 600; }
+    .ba-img-wrap {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      overflow: hidden; width: 100%;
+    }
+    .ba-img-wrap img {
+      max-height: 420px; max-width: 100%;
+      object-fit: contain; border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    }
+    .ba-caption {
+      font-size: 0.58em; color: var(--gray); text-align: center; line-height: 1.4;
+    }
+    .ba-slide .slide-title {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      font-size: 0.65em; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase;
+      white-space: nowrap; padding-top: 8px;
+    }
+
+    /* ══ IMPROVEMENTS ══ */
+    .improvements-slide {
+      background: var(--dark2);
+      display: grid; grid-template-columns: 1fr 1fr;
+      width: 100%; height: 100%;
+    }
+    .imp-left {
+      background: var(--dark); padding: 50px 40px;
+      display: flex; flex-direction: column; justify-content: center; gap: 16px;
+    }
+    .imp-right {
+      padding: 50px 40px;
+      display: flex; flex-direction: column; justify-content: center; gap: 16px;
+    }
+    .imp-item {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .imp-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75em; flex-shrink: 0; margin-top: 2px;
+    }
+    .imp-text strong { display: block; color: var(--cream); font-size: 0.8em; font-weight: 600; margin-bottom: 2px; }
+    .imp-text span { color: var(--gray); font-size: 0.7em; line-height: 1.4; }
+    .impact-chip {
+      display: inline-block; padding: 1px 8px; border-radius: 100px;
+      font-size: 0.65em; font-weight: 600; margin-top: 4px;
+    }
+    .high { background: rgba(220,50,50,0.15); color: #e57373; border: 1px solid rgba(220,50,50,0.3); }
+    .med  { background: rgba(255,165,0,0.15);  color: #ffb74d; border: 1px solid rgba(255,165,0,0.3); }
+
+    /* ══ CTA SLIDE ══ */
+    .cta-slide {
+      background: radial-gradient(ellipse at center, #1a2540 0%, var(--dark) 70%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 20px; text-align: center; height: 100%; padding: 60px;
+    }
+    .cta-slide .gold-line {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .cta-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 32px 48px;
+      display: flex; flex-direction: column; gap: 20px; align-items: center;
+      max-width: 700px;
+    }
+    .cta-btn {
+      display: inline-block; background: var(--gold);
+      color: #0a0a0f; font-weight: 700; font-size: 0.85em;
+      padding: 14px 36px; border-radius: 100px; letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .cta-contacts {
+      display: flex; gap: 32px; margin-top: 8px;
+    }
+    .cta-contact-item { font-size: 0.72em; color: var(--gray); display: flex; flex-direction: column; gap: 4px; }
+    .cta-contact-item strong { color: var(--cream); font-weight: 500; }
+
+    /* ══ Progress bar ══ */
+    .reveal .progress { color: var(--gold); height: 3px; }
+
+    /* ══ Slide numbers ══ */
+    .reveal .slide-number { color: var(--gray); font-size: 0.55em; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ══════════════════════════════════════════
+     SLIDE 1 — COVER
+══════════════════════════════════════════ -->
+<section class="cover" data-transition="fade">
+  <div class="inner">
+    <div class="badge">🔑 Website Redesign · SoCal Closets Co.</div>
+    <h1>A Better Website for<br/>a Great Business</h1>
+    <div class="divider"></div>
+    <p class="subtitle">Analysis · Redesign Concepts · Before & After</p>
+    <p class="by-line">Prepared by Sofia Flores · Web Development Services</p>
+  </div>
+  <div class="nav-hint">Navigate with <kbd>→</kbd> or swipe</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 2 — CURRENT SITE ANALYSIS
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="issues-slide">
+    <div class="issues-left">
+      <h3 style="margin:0 0 4px;">The Current Site</h3>
+      <h2 style="font-size:1.3em; margin:0 0 20px; color:var(--cream);">5 Critical Issues<br/>Holding Back Growth</h2>
+
+      <div class="issue-item">
+        <div class="issue-icon">❌</div>
+        <div class="issue-text">
+          <strong>Broken "Book Consultation" Button</strong>
+          <span>Main CTA loops back to the homepage — visitors who want to book are lost. This alone is losing clients every day.</span>
+        </div>
+      </div>
+      <div class="issue-item">
+        <div class="issue-icon">❌</div>
+        <div class="issue-text">
+          <strong>Gmail Email Address</strong>
+          <span>socalclosetsco@gmail.com instead of a professional @socalclosetsco.com. Signals small operation to premium buyers.</span>
+        </div>
+      </div>
+      <div class="issue-item">
+        <div class="issue-icon">❌</div>
+        <div class="issue-text">
+          <strong>No Testimonials or Reviews</strong>
+          <span>73% of home improvement buyers read reviews before deciding. Zero social proof on the site means lost conversions.</span>
+        </div>
+      </div>
+      <div class="issue-item">
+        <div class="issue-icon">❌</div>
+        <div class="issue-text">
+          <strong>SEO Not Optimized</strong>
+          <span>Title "Inicio | socalclosetsco" has no keywords. Image filenames like "palomita.png" are invisible to Google.</span>
+        </div>
+      </div>
+      <div class="issue-item">
+        <div class="issue-icon">❌</div>
+        <div class="issue-text">
+          <strong>Inconsistent Location</strong>
+          <span>Header says "Los Angeles CA" — footer says "Pomona CA 91766". Confuses visitors and hurts local SEO.</span>
+        </div>
+      </div>
+    </div>
+    <div class="issues-right">
+      <img src="images/current-desktop.png" alt="Current socalclosetsco.com" />
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 3 — SET A DIVIDER
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="section-a-divider">
+    <div class="set-label">REDESIGN CONCEPT</div>
+    <h1 style="color:#7b9fff; margin:0;">Option A — Blue &amp; White</h1>
+    <p style="max-width:520px; opacity:0.8; font-size:0.85em; margin:0;">
+      Same brand colors the client already uses — just better organized,<br/>
+      with every issue fixed and all original content preserved.
+    </p>
+    <div class="pages-row">
+      <div class="page-chip">Home</div>
+      <div class="page-chip">Gallery</div>
+      <div class="page-chip">Services</div>
+      <div class="page-chip">Process</div>
+      <div class="page-chip">Contact</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 4 — SET A: HOME
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Home Page — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current home" />
+      </div>
+      <div class="ba-caption">Broken CTA · No trust bar · No service grid</div>
+    </div>
+    <div class="ba-panel after-blue">
+      <div class="ba-label after-label-blue">AFTER · BLUE SET</div>
+      <div class="ba-page-name">Home Page — Redesigned</div>
+      <div class="ba-img-wrap">
+        <img src="images/a-home.png" alt="Redesigned home blue" />
+      </div>
+      <div class="ba-caption">Fixed CTA · Trust bar · Services preview · Consistent brand</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 5 — SET A: GALLERY
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Gallery — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current gallery" />
+      </div>
+      <div class="ba-caption">Slideshow only · No categories · No photo counts</div>
+    </div>
+    <div class="ba-panel after-blue">
+      <div class="ba-label after-label-blue">AFTER · BLUE SET</div>
+      <div class="ba-page-name">Gallery — Redesigned</div>
+      <div class="ba-img-wrap">
+        <img src="images/a-gallery.png" alt="Redesigned gallery blue" />
+      </div>
+      <div class="ba-caption">6 filter tabs · Walk-In(38) · Wardrobe(17) · Reach-In(18) · Garage(10) · Laundry(9) · Entertainment(3)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 6 — SET A: SERVICES
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Services — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current services" />
+      </div>
+      <div class="ba-caption">No dedicated service pages · No descriptions per service</div>
+    </div>
+    <div class="ba-panel after-blue">
+      <div class="ba-label after-label-blue">AFTER · BLUE SET</div>
+      <div class="ba-page-name">Services — Redesigned</div>
+      <div class="ba-img-wrap">
+        <img src="images/a-services.png" alt="Redesigned services blue" />
+      </div>
+      <div class="ba-caption">All 6 services with photos + descriptions + CTA per service · Trust badges</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 7 — SET A: PROCESS
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Our Process — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current process" />
+      </div>
+      <div class="ba-caption">5 steps buried in long scroll · Videos hard to find</div>
+    </div>
+    <div class="ba-panel after-blue">
+      <div class="ba-label after-label-blue">AFTER · BLUE SET</div>
+      <div class="ba-page-name">Our Process — Redesigned</div>
+      <div class="ba-img-wrap">
+        <img src="images/a-process.png" alt="Redesigned process blue" />
+      </div>
+      <div class="ba-caption">5 numbered steps · 2 installation videos · "Fixed quote, no surprises" · 24hr response guarantee</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 8 — SET A: CONTACT
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Contact — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current contact" />
+      </div>
+      <div class="ba-caption">Gmail address · Inconsistent location (LA vs Pomona)</div>
+    </div>
+    <div class="ba-panel after-blue">
+      <div class="ba-label after-label-blue">AFTER · BLUE SET</div>
+      <div class="ba-page-name">Contact — Redesigned</div>
+      <div class="ba-img-wrap">
+        <img src="images/a-contact.png" alt="Redesigned contact blue" />
+      </div>
+      <div class="ba-caption">All 9 service checkboxes · Virtual vs In-Home estimate · (949) 307-1141 · Pomona Ca. 91766</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 9 — SET B DIVIDER
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="section-b-divider">
+    <div class="set-label gold-label">REDESIGN CONCEPT</div>
+    <h1 style="color:var(--gold); margin:0;">Option B — Premium &amp; Elegant</h1>
+    <p style="max-width:520px; opacity:0.8; font-size:0.85em; margin:0; color:var(--cream);">
+      Dark charcoal backgrounds with gold accents. Positions SoCal Closets Co.<br/>
+      at the level of California Closets — premium, luxury, high-end.
+    </p>
+    <div class="pages-row">
+      <div class="page-chip gold">Home</div>
+      <div class="page-chip gold">Gallery</div>
+      <div class="page-chip gold">Services</div>
+      <div class="page-chip gold">Process</div>
+      <div class="page-chip gold">Contact</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 10 — SET B: HOME
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Home Page — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current home" />
+      </div>
+      <div class="ba-caption">No premium positioning · Looks like mid-range competitor</div>
+    </div>
+    <div class="ba-panel after-gold">
+      <div class="ba-label after-label-gold">AFTER · PREMIUM SET</div>
+      <div class="ba-page-name">Home Page — Premium</div>
+      <div class="ba-img-wrap">
+        <img src="images/b-home.png" alt="Redesigned home premium" />
+      </div>
+      <div class="ba-caption">Luxury positioning · Gold accents · Same content, elevated presentation</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 11 — SET B: GALLERY
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Gallery — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current gallery" />
+      </div>
+      <div class="ba-caption">Generic slideshow · No editorial feel</div>
+    </div>
+    <div class="ba-panel after-gold">
+      <div class="ba-label after-label-gold">AFTER · PREMIUM SET</div>
+      <div class="ba-page-name">Gallery — Premium</div>
+      <div class="ba-img-wrap">
+        <img src="images/b-gallery.png" alt="Redesigned gallery premium" />
+      </div>
+      <div class="ba-caption">Dark editorial portfolio · Gold filter tabs · All 6 categories with photo counts</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 12 — SET B: SERVICES
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Services — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current services" />
+      </div>
+      <div class="ba-caption">No individual service descriptions · Basic grid only</div>
+    </div>
+    <div class="ba-panel after-gold">
+      <div class="ba-label after-label-gold">AFTER · PREMIUM SET</div>
+      <div class="ba-page-name">Services — Premium</div>
+      <div class="ba-img-wrap">
+        <img src="images/b-services.png" alt="Redesigned services premium" />
+      </div>
+      <div class="ba-caption">Luxury service cards · Cinematic photo overlays · Gold trust icons</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 13 — SET B: CONTACT
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="ba-slide">
+    <div class="ba-panel before">
+      <div class="ba-label before-label">BEFORE</div>
+      <div class="ba-page-name">Contact — Current</div>
+      <div class="ba-img-wrap">
+        <img src="images/current.png" alt="Current contact" />
+      </div>
+      <div class="ba-caption">Mixed up locations · Gmail only · Missing estimate type options</div>
+    </div>
+    <div class="ba-panel after-gold">
+      <div class="ba-label after-label-gold">AFTER · PREMIUM SET</div>
+      <div class="ba-page-name">Contact — Premium</div>
+      <div class="ba-img-wrap">
+        <img src="images/b-contact.png" alt="Redesigned contact premium" />
+      </div>
+      <div class="ba-caption">All 9 checkboxes · Virtual &amp; In-Home options · Gold concierge feel</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 14 — KEY IMPROVEMENTS
+══════════════════════════════════════════ -->
+<section data-transition="slide">
+  <div class="improvements-slide">
+    <div class="imp-left">
+      <h3 style="margin:0 0 4px;">What Changes</h3>
+      <h2 style="font-size:1.25em; margin:0 0 16px;">Every Fix Has a<br/>Business Reason</h2>
+
+      <div class="imp-item">
+        <div class="imp-icon">✅</div>
+        <div class="imp-text">
+          <strong>CTA Button Fixed</strong>
+          <span>"Book My Free Consultation" now connects to the real contact form</span>
+          <div><span class="impact-chip high">HIGH IMPACT — leads</span></div>
+        </div>
+      </div>
+      <div class="imp-item">
+        <div class="imp-icon">✅</div>
+        <div class="imp-text">
+          <strong>Professional Email</strong>
+          <span>hello@socalclosetsco.com instead of Gmail — builds instant trust</span>
+          <div><span class="impact-chip high">HIGH — credibility</span></div>
+        </div>
+      </div>
+      <div class="imp-item">
+        <div class="imp-icon">✅</div>
+        <div class="imp-text">
+          <strong>All Content Preserved</strong>
+          <span>Every service, trust point, process step &amp; contact detail — same info, better presentation</span>
+          <div><span class="impact-chip med">NO CONTENT RISK</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="imp-right">
+      <div class="imp-item" style="margin-top:32px;">
+        <div class="imp-icon">✅</div>
+        <div class="imp-text">
+          <strong>All 6 Services Clearly Presented</strong>
+          <span>Walk-In · Wardrobe · Reach-In · Garage · Laundry · Entertainment Centers — each with photo &amp; description</span>
+          <div><span class="impact-chip high">HIGH — SEO &amp; UX</span></div>
+        </div>
+      </div>
+      <div class="imp-item">
+        <div class="imp-icon">✅</div>
+        <div class="imp-text">
+          <strong>Location Consistent</strong>
+          <span>"Pomona Ca. 91766 · Southern California" everywhere — no more LA vs Pomona confusion</span>
+          <div><span class="impact-chip med">MED — local SEO</span></div>
+        </div>
+      </div>
+      <div class="imp-item">
+        <div class="imp-icon">✅</div>
+        <div class="imp-text">
+          <strong>Navigation Works on Mobile</strong>
+          <span>Full menu visible on phones — not just a hamburger button with no items</span>
+          <div><span class="impact-chip high">HIGH — mobile users</span></div>
+        </div>
+      </div>
+      <div class="imp-item">
+        <div class="imp-icon">✅</div>
+        <div class="imp-text">
+          <strong>Virtual vs In-Home Estimate Option</strong>
+          <span>The form now shows both estimate types exactly as the current site offers them</span>
+          <div><span class="impact-chip med">MED — conversions</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 15 — NEXT STEPS / CTA
+══════════════════════════════════════════ -->
+<section data-transition="fade">
+  <div class="cta-slide">
+    <h3 style="margin:0; letter-spacing:0.15em;">READY TO TRANSFORM YOUR WEBSITE?</h3>
+    <h1 style="margin:0; font-size:2.8em; line-height:1.1;">
+      Let's Build It Together
+    </h1>
+    <div class="gold-line"></div>
+
+    <div class="cta-card">
+      <p style="font-size:0.85em; max-width:500px; text-align:center; margin:0; opacity:0.85;">
+        Your content is great. Your photos are beautiful. Your process is solid.<br/>
+        Your website just needs to show all of that in a way that converts visitors into clients.
+      </p>
+      <div class="cta-btn">📅 Book a Call to Get Started</div>
+      <div class="cta-contacts">
+        <div class="cta-contact-item">
+          <span>Phone / WhatsApp</span>
+          <strong>(949) 307-1141</strong>
+        </div>
+        <div class="cta-contact-item">
+          <span>Email</span>
+          <strong>socalclosetsco@gmail.com</strong>
+        </div>
+        <div class="cta-contact-item">
+          <span>Location</span>
+          <strong>Pomona Ca. · Southern California</strong>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:0.62em; color:var(--gray); margin:0;">
+      Choose Option A (Blue/White) or Option B (Premium Dark) · Both include all fixes · Delivery in 2–3 weeks
+    </p>
+  </div>
+</section>
+
+</div><!-- .slides -->
+</div><!-- .reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    progress: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: false,
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    controls: true,
+    controlsLayout: 'bottom-right',
+    controlsTutorial: false,
+    keyboard: true,
+    touch: true,
+    overview: true,
+    autoSlide: 0,
+    loop: false,
+  });
+</script>
+</body>
+</html>
