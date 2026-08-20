@@ -15,138 +15,130 @@
       --navy:  #1B3480;
       --dark:  #1a1a1a;
       --mid:   #555;
-      --light: #F8F5F0;
-      --white: #FFFFFF;
+      --cream: #F8F5F0;
+      --warm:  #FBF8F4;
     }
 
-    /* ── Global overrides ── */
+    /* ── Global ── */
     .reveal,
     .reveal .slides,
-    .reveal .slide-background { background: var(--light) !important; }
+    .reveal .slide-background { background: var(--cream) !important; }
     .reveal { font-family: 'Inter', sans-serif; }
-    .reveal .slides section { padding: 0; }
-    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.01em; }
-    .reveal h1 { font-family: 'Playfair Display', serif; color: var(--dark); }
+    .reveal .slides section { padding: 0; overflow: hidden; }
+    .reveal h1 { text-transform: none; letter-spacing: -0.02em; font-family: 'Playfair Display', serif; color: var(--dark); }
     .reveal .progress { color: var(--sand); height: 3px; }
-    .reveal .slide-number { color: var(--mid); font-size: 0.5em; }
-    .reveal .controls button { color: var(--mid) !important; }
+    .reveal .slide-number { color: #999; font-size: 0.45em; }
+    .reveal .controls button { color: #aaa !important; }
 
     /* ── COVER ── */
     .cover {
-      background: var(--light);
       width: 100%; height: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-    }
-    /* Left: text panel */
-    .cover-left {
+      background: var(--cream);
       display: flex; flex-direction: column;
-      justify-content: center; align-items: flex-start;
-      gap: 20px; padding: 60px 50px 60px 70px;
+      align-items: center; justify-content: center;
+      padding: 48px 40px 36px;
+      box-sizing: border-box; gap: 20px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    /* subtle photo strip at top */
+    .cover::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 32%;
+      background: url('images/b-home.png') center 18% / 200% auto no-repeat;
+      opacity: 0.22;
+    }
+    /* fade photo into cream */
+    .cover::after {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 45%;
+      background: linear-gradient(to bottom, transparent 0%, var(--cream) 80%);
+    }
+    .cover-inner {
       position: relative; z-index: 2;
-      background: var(--light);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 16px;
     }
     .cover-eyebrow {
-      font-size: 0.6em; font-weight: 600; letter-spacing: 0.14em;
+      font-size: 0.55em; font-weight: 600; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--sand);
     }
     .cover-title {
       font-family: 'Playfair Display', serif;
-      font-size: 3.2em; line-height: 1.05; color: var(--dark);
+      font-size: 3em; line-height: 1.05; color: var(--dark);
       margin: 0;
     }
     .cover-rule {
-      width: 48px; height: 2px;
-      background: linear-gradient(90deg, var(--sand), transparent);
+      width: 44px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sand), transparent);
     }
     .cover-sub {
-      font-size: 0.82em; color: var(--mid); font-weight: 400;
-      line-height: 1.6; margin: 0; max-width: 340px;
+      font-size: 0.72em; color: var(--mid); font-weight: 400;
+      line-height: 1.55; margin: 0; max-width: 340px;
     }
-    .cover-by {
-      font-size: 0.6em; color: #999; letter-spacing: 0.04em; margin-top: 8px;
+    .cover-chips {
+      display: flex; flex-direction: column; gap: 9px; width: 100%;
+      max-width: 340px;
     }
-    .cover-concepts {
-      display: flex; flex-direction: column; gap: 10px; margin-top: 4px;
+    .chip {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 16px; border-radius: 10px;
+      font-size: 0.64em; font-weight: 600; letter-spacing: 0.03em;
     }
-    .concept-chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 16px; border-radius: 8px;
-      font-size: 0.65em; font-weight: 600; letter-spacing: 0.04em;
-    }
-    .concept-chip.a {
-      background: rgba(27,52,128,0.07); border: 1px solid rgba(27,52,128,0.18);
+    .chip.a {
+      background: rgba(27,52,128,0.07); border: 1px solid rgba(27,52,128,0.16);
       color: var(--navy);
     }
-    .concept-chip.b {
-      background: rgba(184,147,90,0.1); border: 1px solid rgba(184,147,90,0.3);
+    .chip.b {
+      background: rgba(184,147,90,0.1); border: 1px solid rgba(184,147,90,0.28);
       color: var(--sand);
     }
-    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .dot.navy { background: var(--navy); }
-    .dot.sand { background: var(--sand); }
-    /* Right: photo accent */
-    .cover-right {
-      position: relative; overflow: hidden;
-    }
-    .cover-right img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-    }
-    /* Soft gradient fade on left edge of photo */
-    .cover-right::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(90deg, var(--light) 0%, transparent 25%);
-      z-index: 1;
-    }
+    .chip-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .chip-dot.n { background: var(--navy); }
+    .chip-dot.s { background: var(--sand); }
+    .cover-by { font-size: 0.55em; color: #aaa; letter-spacing: 0.04em; }
     .nav-hint {
-      position: absolute; bottom: 20px; right: 28px; z-index: 10;
-      font-size: 0.52em; color: rgba(0,0,0,0.3);
-      display: flex; align-items: center; gap: 5px;
+      position: absolute; bottom: 16px; right: 24px; z-index: 10;
+      font-size: 0.48em; color: rgba(0,0,0,0.25);
+      display: flex; align-items: center; gap: 4px;
     }
     .nav-hint kbd {
-      background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12);
-      border-radius: 4px; padding: 1px 6px;
-      font-family: 'Inter', sans-serif;
+      background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 3px; padding: 1px 5px; font-family: 'Inter', sans-serif;
     }
 
     /* ── MOCKUP SLIDE ── */
     .mockup-slide {
-      background: var(--white);
-      display: flex; flex-direction: column;
       width: 100%; height: 100%;
-      padding: 14px 16px 12px;
-      box-sizing: border-box;
+      display: flex; flex-direction: column;
+      box-sizing: border-box; overflow: hidden;
     }
     .slide-header {
       display: flex; align-items: center; justify-content: space-between;
-      flex-shrink: 0; margin-bottom: 8px;
+      flex-shrink: 0; padding: 14px 18px 0;
     }
     .set-label {
-      font-size: 0.58em; font-weight: 700;
+      font-size: 0.52em; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase;
     }
     .set-label.blue { color: var(--navy); }
     .set-label.warm { color: var(--sand); }
-    .page-counter {
-      font-size: 0.56em; color: #aaa; letter-spacing: 0.04em;
+    .page-num { font-size: 0.5em; color: #bbb; letter-spacing: 0.04em; }
+
+    /* The fill area — uses background-image to fill height, crop sides */
+    .img-fill {
+      flex: 1; min-height: 0;
+      background-size: auto 100%;
+      background-position: center top;
+      background-repeat: no-repeat;
+      overflow: hidden;
     }
-    .slide-body {
-      flex: 1; display: flex; align-items: center;
-      justify-content: center; min-height: 0;
-    }
-    .slide-body img {
-      max-height: 100%; max-width: 90%;
-      object-fit: contain;
-      border-radius: 16px;
-      box-shadow: 0 12px 48px rgba(0,0,0,0.14), 0 3px 12px rgba(0,0,0,0.08);
-    }
+
     .slide-footer {
-      text-align: center; flex-shrink: 0; padding-top: 8px;
+      flex-shrink: 0; text-align: center; padding: 6px 0 12px;
     }
-    .slide-footer .pg-name {
-      font-size: 0.78em; font-weight: 600; color: var(--dark);
+    .pg-name {
+      font-size: 0.7em; font-weight: 600; color: var(--dark);
       margin: 0; letter-spacing: 0.02em;
     }
   </style>
@@ -158,19 +150,16 @@
 <!-- COVER -->
 <section data-background-color="#F8F5F0" data-transition="fade">
   <div class="cover">
-    <div class="cover-left">
-      <span class="cover-eyebrow">Website Redesign · SoCal Closets Co.</span>
+    <div class="cover-inner">
+      <span class="cover-eyebrow">Website Redesign &nbsp;·&nbsp; SoCal Closets Co.</span>
       <h1 class="cover-title">Two Design<br/>Proposals</h1>
       <div class="cover-rule"></div>
-      <p class="cover-sub">A fresh, modern website that turns visitors into clients — keeping everything your business already does right.</p>
-      <div class="cover-concepts">
-        <div class="concept-chip a"><div class="dot navy"></div>Concept A — Blue &amp; White</div>
-        <div class="concept-chip b"><div class="dot sand"></div>Concept B — Warm &amp; Residential</div>
+      <p class="cover-sub">A modern website that turns visitors into clients — keeping everything your business already does right.</p>
+      <div class="cover-chips">
+        <div class="chip a"><div class="chip-dot n"></div>Concept A — Blue &amp; White</div>
+        <div class="chip b"><div class="chip-dot s"></div>Concept B — Warm &amp; Residential</div>
       </div>
-      <p class="cover-by">Prepared by Sofía Rocha · Web Development Services</p>
-    </div>
-    <div class="cover-right">
-      <img src="images/b-home.png" alt="SoCal Closets preview" />
+      <p class="cover-by">Prepared by Sofía Rocha &nbsp;·&nbsp; Web Development Services</p>
     </div>
     <div class="nav-hint">Navigate <kbd>→</kbd></div>
   </div>
@@ -178,140 +167,120 @@
 
 <!-- SET A: HOME -->
 <section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide">
+  <div class="mockup-slide" style="background:#fff;">
     <div class="slide-header">
       <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-counter">1 / 5</span>
+      <span class="page-num">1 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/a-home.png" alt="Home – Blue" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/a-home.png');"></div>
     <div class="slide-footer"><p class="pg-name">Home</p></div>
   </div>
 </section>
 
 <!-- SET A: GALLERY -->
 <section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide">
+  <div class="mockup-slide" style="background:#fff;">
     <div class="slide-header">
       <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-counter">2 / 5</span>
+      <span class="page-num">2 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/a-gallery.png" alt="Gallery – Blue" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/a-gallery.png');"></div>
     <div class="slide-footer"><p class="pg-name">Gallery</p></div>
   </div>
 </section>
 
 <!-- SET A: SERVICES -->
 <section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide">
+  <div class="mockup-slide" style="background:#fff;">
     <div class="slide-header">
       <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-counter">3 / 5</span>
+      <span class="page-num">3 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/a-services.png" alt="Services – Blue" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/a-services.png');"></div>
     <div class="slide-footer"><p class="pg-name">Services</p></div>
   </div>
 </section>
 
 <!-- SET A: PROCESS -->
 <section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide">
+  <div class="mockup-slide" style="background:#fff;">
     <div class="slide-header">
       <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-counter">4 / 5</span>
+      <span class="page-num">4 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/a-process.png" alt="Our Process – Blue" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/a-process.png');"></div>
     <div class="slide-footer"><p class="pg-name">Our Process</p></div>
   </div>
 </section>
 
 <!-- SET A: CONTACT -->
 <section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide">
+  <div class="mockup-slide" style="background:#fff;">
     <div class="slide-header">
       <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-counter">5 / 5</span>
+      <span class="page-num">5 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/a-contact.png" alt="Contact – Blue" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/a-contact.png');"></div>
     <div class="slide-footer"><p class="pg-name">Contact</p></div>
   </div>
 </section>
 
 <!-- SET B: HOME -->
 <section data-background-color="#FBF8F4" data-transition="fade">
-  <div class="mockup-slide" style="background:#FBF8F4;">
+  <div class="mockup-slide" style="background:#fbf8f4;">
     <div class="slide-header">
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-counter">1 / 5</span>
+      <span class="page-num">1 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/b-home.png" alt="Home – Warm" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/b-home.png');"></div>
     <div class="slide-footer"><p class="pg-name">Home</p></div>
   </div>
 </section>
 
 <!-- SET B: GALLERY -->
 <section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#FBF8F4;">
+  <div class="mockup-slide" style="background:#fbf8f4;">
     <div class="slide-header">
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-counter">2 / 5</span>
+      <span class="page-num">2 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/b-gallery.png" alt="Gallery – Warm" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/b-gallery.png');"></div>
     <div class="slide-footer"><p class="pg-name">Gallery</p></div>
   </div>
 </section>
 
 <!-- SET B: SERVICES -->
 <section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#FBF8F4;">
+  <div class="mockup-slide" style="background:#fbf8f4;">
     <div class="slide-header">
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-counter">3 / 5</span>
+      <span class="page-num">3 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/b-services.png" alt="Services – Warm" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/b-services.png');"></div>
     <div class="slide-footer"><p class="pg-name">Services</p></div>
   </div>
 </section>
 
 <!-- SET B: PROCESS -->
 <section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#FBF8F4;">
+  <div class="mockup-slide" style="background:#fbf8f4;">
     <div class="slide-header">
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-counter">4 / 5</span>
+      <span class="page-num">4 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/b-process.png" alt="Our Process – Warm" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/b-process.png');"></div>
     <div class="slide-footer"><p class="pg-name">Our Process</p></div>
   </div>
 </section>
 
 <!-- SET B: CONTACT -->
 <section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#FBF8F4;">
+  <div class="mockup-slide" style="background:#fbf8f4;">
     <div class="slide-header">
       <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-counter">5 / 5</span>
+      <span class="page-num">5 / 5</span>
     </div>
-    <div class="slide-body">
-      <img src="images/b-contact.png" alt="Contact – Warm" />
-    </div>
+    <div class="img-fill" style="background-image:url('images/b-contact.png');"></div>
     <div class="slide-footer"><p class="pg-name">Contact</p></div>
   </div>
 </section>
@@ -324,7 +293,7 @@
     hash: true, progress: true, slideNumber: 'c/t',
     transition: 'slide', transitionSpeed: 'default',
     backgroundTransition: 'fade', center: false,
-    width: 1080, height: 1080, margin: 0.02,
+    width: 540, height: 960, margin: 0,
     minScale: 0.1, maxScale: 3.0,
     controls: true, controlsLayout: 'bottom-right',
     controlsTutorial: false, keyboard: true, touch: true,
