@@ -31,16 +31,8 @@
       padding: 64px 28px 56px;
       text-align: center;
       border-bottom: 1px solid var(--light-border);
-      position: relative;
-      overflow: hidden;
-    }
-    .cover-photo-strip {
-      position: absolute; inset: 0;
-      background: url('https://htekdev.github.io/socalclosetsco-pitch/images/b-home.png') center 20% / 280% auto no-repeat;
-      opacity: 0.12;
     }
     .cover-content {
-      position: relative; z-index: 2;
       display: flex; flex-direction: column;
       align-items: center; gap: 16px;
     }
@@ -139,7 +131,7 @@
       display: flex; flex-direction: column; gap: 32px;
       background: #ffffff;
     }
-    .mockups.warm-bg { background: var(--warm); }
+    .mockups.warm-bg { background: #ffffff; }
 
     .mockup-card {
       display: flex; flex-direction: column; gap: 10px;
@@ -184,7 +176,6 @@
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-photo-strip"></div>
   <div class="cover-content">
     <span class="cover-tag">Website Redesign &nbsp;·&nbsp; SoCal Closets Co.</span>
     <h1>Two Design Proposals</h1>
@@ -205,7 +196,7 @@
 <!-- CONCEPT A -->
 <div class="section-header" style="background:#fff;">
   <span class="label blue">Concept A</span>
-  <h2>Blue &amp; White</h2>
+  <h2>Blue <span style="font-family:'Inter',sans-serif;font-style:normal;">&amp;</span> White</h2>
   <p>Familiar brand colors, completely redesigned for a modern, mobile-first experience.</p>
 </div>
 
@@ -237,7 +228,7 @@
 <!-- CONCEPT B -->
 <div class="section-header" style="background:var(--warm);">
   <span class="label warm">Concept B</span>
-  <h2>Warm &amp; Residential</h2>
+  <h2>Warm <span style="font-family:'Inter',sans-serif;font-style:normal;">&amp;</span> Residential</h2>
   <p>Beige and cream tones, trust-first layout — positions the business as the premium choice in Southern California.</p>
 </div>
 
