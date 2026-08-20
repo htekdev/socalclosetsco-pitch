@@ -6,311 +6,272 @@
   <title>SoCal Closets Co. — Website Redesign</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
   <style>
-        html, body {
-      margin: 0; padding: 0; overflow: hidden;
-      height: 100%; width: 100%;
-      background: #F8F5F0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --sand:  #B8935A;
-      --navy:  #1B3480;
-      --dark:  #1a1a1a;
-      --mid:   #555;
       --cream: #F8F5F0;
       --warm:  #FBF8F4;
+      --navy:  #1B3480;
+      --sand:  #B8935A;
+      --dark:  #1a1a1a;
+      --mid:   #666;
+      --light-border: rgba(0,0,0,0.07);
     }
-
-    /* ── Global ── */
-    .reveal,
-    .reveal .slides,
-    .reveal .slide-background { background: var(--cream) !important; }
-    .reveal { font-family: 'Inter', sans-serif; }
-    .reveal .slides section { padding: 0; overflow: hidden; }
-    .reveal h1 { text-transform: none; letter-spacing: -0.02em; font-family: 'Playfair Display', serif; color: var(--dark); }
-    .reveal .progress { color: var(--sand); height: 3px; }
-    .reveal .slide-number { color: #999; font-size: 0.45em; }
-    .reveal .controls button { color: #aaa !important; }
+    html { background: var(--cream); }
+    body {
+      background: var(--cream);
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
 
     /* ── COVER ── */
     .cover {
-      width: 100%; height: 100%;
       background: var(--cream);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 48px 40px 36px;
-      box-sizing: border-box; gap: 20px;
+      padding: 64px 28px 56px;
       text-align: center;
-      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--light-border);
+      position: relative;
+      overflow: hidden;
     }
-    /* subtle photo strip at top */
-    .cover::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 32%;
-      background: url('images/b-home.png') center 18% / 200% auto no-repeat;
-      opacity: 0.22;
+    .cover-photo-strip {
+      position: absolute; inset: 0;
+      background: url('https://htekdev.github.io/socalclosetsco-pitch/images/b-home.png') center 20% / 280% auto no-repeat;
+      opacity: 0.12;
     }
-    /* fade photo into cream */
-    .cover::after {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 45%;
-      background: linear-gradient(to bottom, transparent 0%, var(--cream) 80%);
-    }
-    .cover-inner {
+    .cover-content {
       position: relative; z-index: 2;
       display: flex; flex-direction: column;
       align-items: center; gap: 16px;
     }
-    .cover-eyebrow {
-      font-size: 0.55em; font-weight: 600; letter-spacing: 0.14em;
+    .cover-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--sand);
+      background: rgba(184,147,90,0.1); border: 1px solid rgba(184,147,90,0.25);
+      border-radius: 100px; padding: 5px 14px;
     }
-    .cover-title {
+    .cover h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3em; line-height: 1.05; color: var(--dark);
-      margin: 0;
+      font-size: clamp(2.2rem, 8vw, 3.2rem);
+      line-height: 1.1; color: var(--dark);
+      max-width: 360px;
     }
     .cover-rule {
       width: 44px; height: 2px;
       background: linear-gradient(90deg, transparent, var(--sand), transparent);
     }
     .cover-sub {
-      font-size: 0.72em; color: var(--mid); font-weight: 400;
-      line-height: 1.55; margin: 0; max-width: 340px;
+      font-size: 14px; color: var(--mid); font-weight: 400;
+      line-height: 1.6; max-width: 300px;
     }
-    .cover-chips {
-      display: flex; flex-direction: column; gap: 9px; width: 100%;
-      max-width: 340px;
+    .cover-concepts {
+      display: flex; flex-direction: column; gap: 8px;
+      width: 100%; max-width: 300px; margin-top: 4px;
     }
-    .chip {
+    .concept-chip {
       display: flex; align-items: center; gap: 10px;
-      padding: 9px 16px; border-radius: 10px;
-      font-size: 0.64em; font-weight: 600; letter-spacing: 0.03em;
+      padding: 10px 16px; border-radius: 10px;
+      font-size: 13px; font-weight: 600;
     }
-    .chip.a {
+    .concept-chip.a {
+      background: rgba(27,52,128,0.07);
+      border: 1px solid rgba(27,52,128,0.16);
+      color: var(--navy);
+    }
+    .concept-chip.b {
+      background: rgba(184,147,90,0.09);
+      border: 1px solid rgba(184,147,90,0.25);
+      color: var(--sand);
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .dot.n { background: var(--navy); }
+    .dot.s { background: var(--sand); }
+    .cover-by {
+      font-size: 12px; color: #aaa; letter-spacing: 0.04em; margin-top: 8px;
+    }
+    .scroll-hint {
+      margin-top: 28px; display: flex; flex-direction: column;
+      align-items: center; gap: 6px; opacity: 0.4;
+    }
+    .scroll-hint span { font-size: 11px; letter-spacing: 0.06em; color: var(--mid); }
+    .scroll-arrow {
+      width: 20px; height: 20px; border-right: 2px solid var(--mid);
+      border-bottom: 2px solid var(--mid);
+      transform: rotate(45deg); animation: bounce 1.6s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translate(0,0); }
+      50% { transform: rotate(45deg) translate(3px,3px); }
+    }
+
+    /* ── SECTION DIVIDERS ── */
+    .section-header {
+      padding: 40px 28px 8px;
+      text-align: center;
+    }
+    .section-header .label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; border-radius: 100px; padding: 5px 14px;
+      margin-bottom: 12px;
+    }
+    .section-header .label.blue {
       background: rgba(27,52,128,0.07); border: 1px solid rgba(27,52,128,0.16);
       color: var(--navy);
     }
-    .chip.b {
-      background: rgba(184,147,90,0.1); border: 1px solid rgba(184,147,90,0.28);
+    .section-header .label.warm {
+      background: rgba(184,147,90,0.09); border: 1px solid rgba(184,147,90,0.25);
       color: var(--sand);
     }
-    .chip-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-    .chip-dot.n { background: var(--navy); }
-    .chip-dot.s { background: var(--sand); }
-    .cover-by { font-size: 0.55em; color: #aaa; letter-spacing: 0.04em; }
-    .nav-hint {
-      position: absolute; bottom: 16px; right: 24px; z-index: 10;
-      font-size: 0.48em; color: rgba(0,0,0,0.25);
-      display: flex; align-items: center; gap: 4px;
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--dark); font-weight: 700;
     }
-    .nav-hint kbd {
-      background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1);
-      border-radius: 3px; padding: 1px 5px; font-family: 'Inter', sans-serif;
+    .section-header p {
+      font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.5;
     }
 
-    /* ── MOCKUP SLIDE ── */
-    .mockup-slide {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      box-sizing: border-box; overflow: hidden;
+    /* ── MOCKUP CARDS ── */
+    .mockups {
+      padding: 24px 20px 48px;
+      display: flex; flex-direction: column; gap: 32px;
+      background: #ffffff;
     }
-    .slide-header {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-shrink: 0; padding: 14px 18px 0;
-    }
-    .set-label {
-      font-size: 0.52em; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-    }
-    .set-label.blue { color: var(--navy); }
-    .set-label.warm { color: var(--sand); }
-    .page-num { font-size: 0.5em; color: #bbb; letter-spacing: 0.04em; }
+    .mockups.warm-bg { background: var(--warm); }
 
-    /* Fill area: img fills height, excess width is clipped */
-    .img-fill {
-      flex: 1; min-height: 0;
-      overflow: hidden;
-      position: relative;
+    .mockup-card {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .mockup-card img {
       width: 100%;
+      max-width: 480px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
     }
-    .img-fill img {
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      height: 100%;
-      width: auto;
-      max-width: none;
-      max-height: none;
+    .mockup-card .page-label {
+      text-align: center;
+      font-size: 13px; font-weight: 600; color: var(--dark);
+      letter-spacing: 0.03em;
+    }
+    .mockup-card .page-label span {
+      font-weight: 400; color: var(--mid);
     }
 
-    .slide-footer {
-      flex-shrink: 0; text-align: center; padding: 6px 0 12px;
+    /* ── DIVIDER LINE ── */
+    .divider {
+      height: 1px; background: var(--light-border);
+      margin: 0 20px;
     }
-    .pg-name {
-      font-size: 0.7em; font-weight: 600; color: var(--dark);
-      margin: 0; letter-spacing: 0.02em;
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center; padding: 40px 28px;
+      border-top: 1px solid var(--light-border);
+      background: var(--cream);
     }
+    .footer p {
+      font-size: 12px; color: #aaa; line-height: 1.8;
+    }
+    .footer strong { color: var(--mid); font-weight: 600; }
   </style>
 </head>
 <body>
-<div class="reveal">
-<div class="slides">
 
 <!-- COVER -->
-<section data-background-color="#F8F5F0" data-transition="fade">
-  <div class="cover">
-    <div class="cover-inner">
-      <span class="cover-eyebrow">Website Redesign &nbsp;·&nbsp; SoCal Closets Co.</span>
-      <h1 class="cover-title">Two Design<br/>Proposals</h1>
-      <div class="cover-rule"></div>
-      <p class="cover-sub">A modern website that turns visitors into clients — keeping everything your business already does right.</p>
-      <div class="cover-chips">
-        <div class="chip a"><div class="chip-dot n"></div>Concept A — Blue &amp; White</div>
-        <div class="chip b"><div class="chip-dot s"></div>Concept B — Warm &amp; Residential</div>
-      </div>
-      <p class="cover-by">Prepared by Sofía Rocha &nbsp;·&nbsp; Web Development Services</p>
+<div class="cover">
+  <div class="cover-photo-strip"></div>
+  <div class="cover-content">
+    <span class="cover-tag">Website Redesign &nbsp;·&nbsp; SoCal Closets Co.</span>
+    <h1>Two Design Proposals</h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">A modern website that turns visitors into clients — keeping everything already working, just better presented.</p>
+    <div class="cover-concepts">
+      <div class="concept-chip a"><div class="dot n"></div>Concept A — Blue &amp; White</div>
+      <div class="concept-chip b"><div class="dot s"></div>Concept B — Warm &amp; Residential</div>
     </div>
-    <div class="nav-hint">Navigate <kbd>→</kbd></div>
-  </div>
-</section>
-
-<!-- SET A: HOME -->
-<section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide" style="background:#fff;">
-    <div class="slide-header">
-      <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-num">1 / 5</span>
+    <p class="cover-by">Prepared by Sofía Rocha &nbsp;·&nbsp; Web Development Services</p>
+    <div class="scroll-hint">
+      <span>SCROLL DOWN</span>
+      <div class="scroll-arrow"></div>
     </div>
-    <div class="img-fill"><img src="images/a-home.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Home</p></div>
   </div>
-</section>
+</div>
 
-<!-- SET A: GALLERY -->
-<section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide" style="background:#fff;">
-    <div class="slide-header">
-      <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-num">2 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/a-gallery.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Gallery</p></div>
+<!-- CONCEPT A -->
+<div class="section-header" style="background:#fff;">
+  <span class="label blue">Concept A</span>
+  <h2>Blue &amp; White</h2>
+  <p>Familiar brand colors, completely redesigned for a modern, mobile-first experience.</p>
+</div>
+
+<div class="mockups">
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/a-home.png" alt="Home – Blue" loading="eager" />
+    <p class="page-label">Home <span>— Main landing page</span></p>
   </div>
-</section>
-
-<!-- SET A: SERVICES -->
-<section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide" style="background:#fff;">
-    <div class="slide-header">
-      <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-num">3 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/a-services.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Services</p></div>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/a-gallery.png" alt="Gallery – Blue" loading="lazy" />
+    <p class="page-label">Gallery <span>— All 6 categories</span></p>
   </div>
-</section>
-
-<!-- SET A: PROCESS -->
-<section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide" style="background:#fff;">
-    <div class="slide-header">
-      <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-num">4 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/a-process.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Our Process</p></div>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/a-services.png" alt="Services – Blue" loading="lazy" />
+    <p class="page-label">Services <span>— All service types</span></p>
   </div>
-</section>
-
-<!-- SET A: CONTACT -->
-<section data-background-color="#FFFFFF" data-transition="slide">
-  <div class="mockup-slide" style="background:#fff;">
-    <div class="slide-header">
-      <span class="set-label blue">Concept A — Blue &amp; White</span>
-      <span class="page-num">5 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/a-contact.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Contact</p></div>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/a-process.png" alt="Our Process – Blue" loading="lazy" />
+    <p class="page-label">Our Process <span>— 4 steps to installation</span></p>
   </div>
-</section>
-
-<!-- SET B: HOME -->
-<section data-background-color="#FBF8F4" data-transition="fade">
-  <div class="mockup-slide" style="background:#fbf8f4;">
-    <div class="slide-header">
-      <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-num">1 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/b-home.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Home</p></div>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/a-contact.png" alt="Contact – Blue" loading="lazy" />
+    <p class="page-label">Contact <span>— Get a free design</span></p>
   </div>
-</section>
+</div>
 
-<!-- SET B: GALLERY -->
-<section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#fbf8f4;">
-    <div class="slide-header">
-      <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-num">2 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/b-gallery.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Gallery</p></div>
+<div class="divider"></div>
+
+<!-- CONCEPT B -->
+<div class="section-header" style="background:var(--warm);">
+  <span class="label warm">Concept B</span>
+  <h2>Warm &amp; Residential</h2>
+  <p>Beige and cream tones, trust-first layout — positions the business as the premium choice in Southern California.</p>
+</div>
+
+<div class="mockups warm-bg">
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/b-home.png" alt="Home – Warm" loading="eager" />
+    <p class="page-label">Home <span>— Main landing page</span></p>
   </div>
-</section>
-
-<!-- SET B: SERVICES -->
-<section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#fbf8f4;">
-    <div class="slide-header">
-      <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-num">3 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/b-services.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Services</p></div>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/b-gallery.png" alt="Gallery – Warm" loading="lazy" />
+    <p class="page-label">Gallery <span>— All 6 categories</span></p>
   </div>
-</section>
-
-<!-- SET B: PROCESS -->
-<section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#fbf8f4;">
-    <div class="slide-header">
-      <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-num">4 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/b-process.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Our Process</p></div>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/b-services.png" alt="Services – Warm" loading="lazy" />
+    <p class="page-label">Services <span>— All service types</span></p>
   </div>
-</section>
-
-<!-- SET B: CONTACT -->
-<section data-background-color="#FBF8F4" data-transition="slide">
-  <div class="mockup-slide" style="background:#fbf8f4;">
-    <div class="slide-header">
-      <span class="set-label warm">Concept B — Warm &amp; Residential</span>
-      <span class="page-num">5 / 5</span>
-    </div>
-    <div class="img-fill"><img src="images/b-contact.png" alt="" /></div>
-    <div class="slide-footer"><p class="pg-name">Contact</p></div>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/b-process.png" alt="Our Process – Warm" loading="lazy" />
+    <p class="page-label">Our Process <span>— 4 steps to installation</span></p>
   </div>
-</section>
+  <div class="mockup-card">
+    <img src="https://htekdev.github.io/socalclosetsco-pitch/images/b-contact.png" alt="Contact – Warm" loading="lazy" />
+    <p class="page-label">Contact <span>— Get a free design</span></p>
+  </div>
+</div>
 
-</div><!-- .slides -->
-</div><!-- .reveal -->
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
-<script>
-  Reveal.initialize({
-    hash: true, progress: true, slideNumber: 'c/t',
-    transition: 'slide', transitionSpeed: 'default',
-    backgroundTransition: 'fade', center: true,
-    width: 540, height: 960, margin: 0,
-    minScale: 0.1, maxScale: 3.0,
-    controls: true, controlsLayout: 'bottom-right',
-    controlsTutorial: false, keyboard: true, touch: true,
-  });
-</script>
+<!-- FOOTER -->
+<div class="footer">
+  <p>
+    <strong>SoCal Closets Co.</strong> — Website Redesign Proposal<br />
+    Prepared by <strong>Sofía Rocha</strong> &nbsp;·&nbsp; Web Development Services<br />
+    (949) 307-1141 &nbsp;·&nbsp; socalclosetsco.com
+  </p>
+</div>
+
 </body>
 </html>
